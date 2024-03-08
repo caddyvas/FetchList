@@ -6,7 +6,6 @@ import androidx.lifecycle.Transformations
 import com.learn.fetchlist.data.HiringList
 import com.learn.fetchlist.service.INetworkAPIService
 import com.learn.fetchlist.service.NetworkResponse
-import io.realm.Realm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers.IO
