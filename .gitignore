@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Gradle files
 .gradle/
 build/
@@ -31,3 +32,19 @@ google-services.json
 
 # Android Profiling
 *.hprof
+=======
+*.iml
+.gradle/
+build/
+/local.properties
+
+*.idea/
+misc.xml
+
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+>>>>>>> master
