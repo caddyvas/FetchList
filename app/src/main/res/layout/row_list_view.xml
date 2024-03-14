@@ -22,7 +22,7 @@
         style="@style/row_body"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.40"
+        android:layout_weight="0.35"
         android:gravity="start|center_vertical"
         android:padding="3dp"/>
 
@@ -32,7 +32,7 @@
         style="@style/row_body"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.29"
+        android:layout_weight="0.34"
         android:gravity="start|center_vertical"
         android:padding="3dp"/>
 

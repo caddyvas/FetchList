@@ -72,7 +72,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.30"
+                android:layout_weight="0.31"
                 android:gravity="start|center_vertical"
                 android:orientation="vertical"
                 android:padding="5dp">
@@ -90,9 +90,9 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.40"
+                android:layout_weight="0.39"
                 android:gravity="center"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
                 <TextView
@@ -101,8 +101,14 @@
                     android:layout_height="wrap_content"
                     android:gravity="start|center_horizontal"
                     android:text="Name">
-
                 </TextView>
+                <ImageView
+                    android:id="@+id/sort_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:gravity="start|center_horizontal"
+                    android:src="@drawable/ascending_arrow"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -111,6 +117,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:layout_below="@+id/relative_layout_list_view_header"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -118,7 +125,7 @@
             <ListView
                 android:id="@+id/linear_layout_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="550dp"
                 android:background="@drawable/customborder"
                 android:clickable="true"
                 android:cacheColorHint="@android:color/transparent"

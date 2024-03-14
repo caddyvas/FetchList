@@ -1,8 +1,10 @@
 package com.learn.fetchlist.ui
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -22,12 +24,15 @@ class MainActivity : AppCompatActivity() {
     private var mainHiringList: ArrayList<HiringList> = ArrayList()
     private lateinit var listViewAdapter: ListViewAdapter
     private lateinit var autoCompleteTextView: AutoCompleteTextView
+    private lateinit var sortIcon: ImageView
+    private var isIdAscending: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // initialize UI layout elements
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView)
+        sortIcon = findViewById(R.id.sort_icon)
 
         listViewAdapter = ListViewAdapter(this, hiringList)
         val networkRepository = NetworkRepository()
@@ -44,6 +49,8 @@ class MainActivity : AppCompatActivity() {
                     mainHiringList.addAll(removeEmptyStrings(status.data as ArrayList<HiringList>))
                     println("List_Size: ${mainHiringList.size}")
                     handleDropDownListOfIds()
+                    //sort items by name
+                    mainHiringList.sortBy { it.id }
                     // API call response always starts with 1
                     populateListBasedOnId(1)
                 }
@@ -54,17 +61,17 @@ class MainActivity : AppCompatActivity() {
                     when (responseCode) {
                         in 500..503 -> {
                             // display a generic message
-                            // TODO
+                            println("ServerError: 500 - 503")
                             return@Observer
                         }
 
                         504 -> {
-                            // TODO
+                            println("ServerError: 504")
                             return@Observer
                         }
 
                         403 -> {
-                            // TODO
+                            println("Forbidden: 403")
                             return@Observer
                         }
                     }
@@ -101,6 +108,9 @@ class MainActivity : AppCompatActivity() {
         println("SelectedListId:${listId}")
         hiringList.clear()
         hiringList.addAll(mainHiringList.filter { it.listId == listId } as ArrayList<HiringList>)
+        // sort the list by name
+        hiringList.sortedBy { it.id }
+        isIdAscending = true
         println("Reordered List Size: ${hiringList.size}")
         // update the adapter
         listViewAdapter.notifyDataSetChanged()
@@ -110,7 +120,7 @@ class MainActivity : AppCompatActivity() {
      * Method which filters out any items where "name" is blank or null.
      */
     private fun removeEmptyStrings(hiringList: ArrayList<HiringList>): ArrayList<HiringList> {
-        hiringList.removeAll { (it.name == "" || it.name == null)}
+        hiringList.removeAll { (it.name == "" || it.name == null) }
         return hiringList
     }
 }
